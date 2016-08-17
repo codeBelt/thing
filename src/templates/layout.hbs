@@ -1,0 +1,130 @@
+<!doctype html>
+<html class="no-js" lang="en-us">
+<head>
+    <meta name="google-site-verification" content="FHaD_353XEkwprHhHzXsvJ6B7vJVOJgcqVkpQFBJeAM" />
+    <!-- META DATA -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--[if IE]><meta http-equiv="cleartype" content="on" /><![endif]-->
+
+    <!-- SEO -->
+    <title>Nerdery Bloomington Beer</title>
+
+    <!-- STYLESHEETS -->
+    {{#block "styles"}}
+        <!-- build:css assets/styles/head.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <link rel="stylesheet" media="screen, projection" href="assets/styles/modern.css" />
+        <link href='https://fonts.googleapis.com/css?family=Asap:400,700|Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    {{/block}}
+
+    <!-- POLYFILLS -->
+    {{#block "scriptsHead"}}
+        <!-- build:js assets/scripts/head.js -->
+        <script src="assets/vendor/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    {{/block}}
+</head>
+<body>
+
+    {{#block "header"}}
+    {{/block}}
+
+    {{#block "body"}}
+    {{/block}}
+
+    {{#block "footer"}}
+    {{/block}}
+
+    <!-- JAVASCRIPT -->
+    <script>
+        /**
+         * Global constants
+         *
+         * TODO: ideally these values would be filled in from the server side
+         *
+         * @class SETTINGS
+         * @static
+         */
+        window.SETTINGS = {};
+        /**
+         * Indicates whether we are running on a production environment
+         *
+         * @property IS_PRODUCTION
+         * @type Boolean
+         * @final
+         */
+        SETTINGS.IS_PRODUCTION = false;
+        /**
+         * Indicates whether to use the mock or backend API.
+         *
+         * @property USE_MOCK_API
+         * @type Boolean
+         * @final
+         */
+        SETTINGS.USE_MOCK_API = true;
+        /**
+         * Appended to query string for versioning of network resources (CSS,
+         * JavaScript, etc). This version number should be updated in production
+         * for every release.
+         *
+         * @property APP_VERSION
+         * @type {String}
+         * @final
+         */
+        SETTINGS.APP_VERSION = '@@version';
+        /**
+         * Appended to query string to defeat caching of network resources (CSS,
+         * JavaScript, etc). Should be set to '' on production
+         *
+         * @property CACHE_BUSTER
+         * @type String
+         * @final
+         */
+        SETTINGS.CACHE_BUSTER = SETTINGS.IS_PRODUCTION ? '' : '&bust=' + Math.random();
+        /**
+         * Root path for all JavaScript files
+         *
+         * @property SCRIPT_PATH
+         * @type String
+         * @final
+         */
+        SETTINGS.SCRIPT_PATH = 'assets/scripts/';
+        /**
+         * The start and end times for the beer screen being static.
+         *
+         * @property BEER_TIME
+         * @type Object
+         * @final
+         */
+        SETTINGS.BEER_TIME = {
+            START: {
+                hours: 16,
+                minutes: 0
+            },
+            END: {
+                hours: 18,
+                minutes: 0
+            }
+        };
+    </script>
+    {{#block "scriptsBody"}}
+        <!-- build:js assets/scripts/vendor.js -->
+        <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="assets/vendor/form2js/src/form2js.js"></script>
+        <script src="assets/vendor/firebase/firebase.js"></script>
+        <script src="assets/vendor/handlebars/handlebars.runtime.min.js"></script>
+        <script src="assets/vendor/Sortable/Sortable.min.js"></script>
+        <script src="assets/vendor/lovefield/dist/lovefield.min.js"></script>
+        <script src="assets/vendor/moment/moment.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js assets/scripts/main.js -->
+        <script src="assets/scripts/precompiledJst.js"></script>
+        <script src="assets/scripts/main.js"></script>
+        <!-- endbuild -->
+    {{/block}}
+</body>
+</html>

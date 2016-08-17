@@ -1,0 +1,44 @@
+.listBar {
+    display: flex;
+    align-self: flex-end;
+    margin-bottom: 10px;
+}
+
+.listBar-items {
+    flex: 1;
+    align-self: flex-end;
+}
+
+.listBar-items > * {
+    appearance: none;
+    display: inline-block;
+    padding: 2px 10px 2px 0;
+    border: 0;
+    font-size: 14px;
+    color: $COLOR_TEXT;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.listBar-items > * + * {
+    padding: 2px 10px;
+}
+
+.listBar-item:hover,
+.listBar-item:focus {
+    color: darken($COLOR_BRAND_COMPLEMENTARY, 10%);
+}
+
+.listBar-item_primary {
+    font-family: $FONT_SECONDARY;
+    font-weight: $FONT_WEIGHT_BOLD;
+    text-transform: uppercase;
+}
+
+.listBar-item.isActiveListBarItem {
+    font-weight: $FONT_WEIGHT_BOLD;
+}
+
+.listBar-item + .listBar-item {
+    border-left: 1px solid lighten($COLOR_TEXT, 30%);
+}

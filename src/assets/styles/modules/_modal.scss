@@ -1,0 +1,89 @@
+/* ----------------------------------------------------------------------
+ modal - full viewport overlay
+---------------------------------------------------------------------- */
+.modal {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.modal img {
+    max-height: 200px;
+}
+
+.modal ~ .site {
+    filter: blur(2px) saturate(0.3);
+}
+
+.modal-underlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(50, 50, 50, 0.5);
+}
+
+.modal-inner {
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(black, 0.25);
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+}
+
+.modal-inner_md {
+    max-width: 460px;
+}
+
+.modal-inner_lg {
+    max-width: 760px;
+}
+
+.modal-inner-close {
+    appearance: none;
+    box-sizing: border-box;
+    position: absolute;
+    display: inline-block;
+    top: 10px;
+    right: 10px;
+    padding: 2px 9px 6px 9px;
+    border: 1px solid darken($COLOR_BRAND_COMPLEMENTARY_DARK, 5%);
+    color: white;
+    background-color: $COLOR_BRAND_COMPLEMENTARY_DARK;
+    font-family: $FONT_SECONDARY;
+    font-weight: $FONT_WEIGHT_BOLD;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    transition: all $TRANSITION_DURATION ease;
+}
+
+.modal-inner-close:hover,
+.modal-inner-close:focus {
+    border-color: darken($COLOR_BRAND_COMPLEMENTARY_DARK, 10%);
+    background-color: darken($COLOR_BRAND_COMPLEMENTARY_DARK, 5%);
+}
+
+.mix-modal-inner_isScrollable {
+    max-height: 75vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mix-modal-inner_flat {
+    overflow: visible;
+    box-shadow: none;
+}

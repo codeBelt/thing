@@ -1,0 +1,43 @@
+.input {
+    appearance: none;
+    box-sizing: border-box;
+    border-radius: 0;
+    color: $COLOR_TEXT;
+    line-height: 1.55;
+}
+
+.input_text,
+.input_textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid $COLOR_UI_LIGHT;
+    background-color: $COLOR_UI_LIGHT;
+    font-size: 18px;
+    transition: border-color 200ms ease;
+}
+
+.input_textarea {
+    height: 140px;
+}
+
+.input:focus {
+    border-color: $COLOR_BRAND_COMPLEMENTARY_DARK;
+}
+
+.input.error {
+    border-color: $COLOR_UI_ALERT;
+}
+
+.input + .input {
+    margin-top: 14px;
+}
+
+.input + .label {
+    margin-top: 14px;
+}
+
+input::-webkit-input-placeholder { color: white !important; }
+input:-moz-placeholder { color: white !important; }
+input::-moz-placeholder { color: white !important; }
+input:-ms-input-placeholder { color: white !important; }

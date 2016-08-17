@@ -1,0 +1,13 @@
+{
+  "name": "client-project",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "handlebars": "~4.0.5",
+    "jquery": "~2.2.3",
+    "modernizr": "git://github.com/components/modernizr#2.8.3",
+    "structurejs": "~0.12.4",
+    "moment": "~2.13.0"
+  },
+  "devDependencies": {}
+}

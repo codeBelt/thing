@@ -1,0 +1,25 @@
+/*----------------------------------------------------------------------------
+site - Main site structure
+----------------------------------------------------------------------------*/
+.site {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.site-hd {
+    width: 100vw;
+    padding-top: 20px;
+    padding-right: 40px;
+    padding-left: 40px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+
+.site-bd {
+    flex: 1;
+}

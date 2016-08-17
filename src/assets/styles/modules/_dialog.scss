@@ -1,0 +1,42 @@
+/* ----------------------------------------------------------------------
+ dialog - modal dialog presentation
+---------------------------------------------------------------------- */
+.dialog {
+    box-sizing: border-box;
+}
+
+.dialog_center {
+    text-align: center;
+}
+
+.dialog > * {
+    padding: 19px 14px 14px 14px;
+    box-sizing: border-box;
+}
+
+.dialog-hd {
+    font-family: $FONT_SECONDARY;
+    font-weight: $FONT_WEIGHT_BOLD;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+    text-transform: uppercase;
+    background-color: $COLOR_BRAND_COMPLEMENTARY_DARK;
+    transition: border-radius 200ms ease;
+}
+
+.dialog_login .dialog-hd {
+    background-color: $COLOR_BRAND;
+}
+
+.dialog-bd {
+    min-height: 130px;
+    font: $FONT;
+    color: $COLOR_TEXT;
+    background-color: #ffffff;
+}
+
+.dialog-ft {
+    background-color: #ffffff;
+}

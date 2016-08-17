@@ -1,0 +1,29 @@
+{{#extend "layout"}}
+
+    {{#content "body" mode="append"}}
+        <div class="site js-IndexView">
+            <div class="site-hd">
+                <div class="split">
+                    <img src="assets/media/images/logo.png" alt="Nerdery" />
+                    <div class="time">
+                        <span class="js-IndexView-date"></span> &bullet; <span class="js-IndexView-time"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="site-bd">
+                <div class="pt-perspective js-IndexView-slidesContainer">
+                    <div class="pt-page pt-page-1 js-BeerView">
+                        <ul class="feature js-BeerView-itemsContainer">
+                        </ul>
+                    </div>
+                    <div class="pt-page pt-page-2 js-AnnouncementsView"></div>
+                </div>
+            </div>
+        </div>
+    {{/content}}
+
+    {{#content "footer" mode="append"}}
+        <div class="error js-error">There was a problem connecting to the database. Get Robert, it's his fault!</div>
+    {{/content}}
+
+{{/extend}}

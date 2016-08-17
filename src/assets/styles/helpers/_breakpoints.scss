@@ -1,0 +1,40 @@
+/*----------------------------------------------------------------------------
+Mixin - Breakpoint
+
+Mixins for Mediaqueries Major Breakpoints
+----------------------------------------------------------------------------*/
+
+$WIDTH_XS: 480px !default;
+$WIDTH_SM: 768px !default;
+$WIDTH_MD: 960px !default;
+$WIDTH_LG: 1260px !default;
+
+$BREAKPOINT_SUBTRACTOR: 1px;
+
+$MEDIA_QUERIES: true !default;
+
+@mixin breakpoint($POINT) {
+    @if $MEDIA_QUERIES {
+
+        @if $POINT == XSM {
+            @media (min-width: $WIDTH_XS) { @content; } // 480px
+        } @else if $POINT == XSM_INVERSE {
+            @media (max-width: $WIDTH_XS - $BREAKPOINT_SUBTRACTOR) { @content; } // UP TO 480px
+        } @else if $POINT == SM {
+            @media (min-width: $WIDTH_SM) { @content; } // 768px
+        } @else if $POINT == SM_INVERSE {
+            @media (max-width: $WIDTH_SM - $BREAKPOINT_SUBTRACTOR) { @content; } // UP TO 768px
+        } @else if $POINT == MD {
+            @media (min-width: $WIDTH_MD) { @content; } // 960px
+        } @else if $POINT == MD_INVERSE {
+            @media (max-width: $WIDTH_MD - $BREAKPOINT_SUBTRACTOR) { @content; } // UP TO 960px
+        } @else if $POINT == LG {
+            @media (min-width: $WIDTH_LG) { @content; } // 1260px
+        } @else if $POINT == LG_INVERSE {
+            @media (max-width: $WIDTH_LG - $BREAKPOINT_SUBTRACTOR) { @content; } // UP TO 1260px
+        }
+
+    } @else {
+        @content;
+    }
+}

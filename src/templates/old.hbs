@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="en-us">
+<head>
+    <meta name="google-site-verification" content="FHaD_353XEkwprHhHzXsvJ6B7vJVOJgcqVkpQFBJeAM" />
+    <!-- META DATA -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--[if IE]><meta http-equiv="cleartype" content="on" /><![endif]-->
+
+    <!-- SEO -->
+    <title>Nerdery Bloomington Beer</title>
+
+    <!-- STYLESHEETS -->
+    {{#block "styles"}}
+        <!-- build:css assets/styles/head.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <link rel="stylesheet" media="screen, projection" href="assets/styles/modern.css" />
+        <link href='https://fonts.googleapis.com/css?family=Asap:400,700|Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    {{/block}}
+
+    <!-- POLYFILLS -->
+    {{#block "scriptsHead"}}
+        <!-- build:js assets/scripts/head.js -->
+        <!-- endbuild -->
+    {{/block}}
+</head>
+<body>
+    {{>partials/_icons}}
+    {{>partials/_background}}
+
+    <div class="site">
+        <div class="site-hd">
+            {{#block "header"}}
+            {{/block}}
+        </div>
+        <div class="site-bd">
+            {{#block "body"}}
+            {{/block}}
+        </div>
+        <div class="site-ft">
+            {{#block "footer"}}
+            {{/block}}
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    {{#block "scriptsBody"}}
+        <!-- build:js assets/scripts/vendor.js -->
+        <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="assets/vendor/form2js/src/form2js.js"></script>
+        <script src="assets/vendor/firebase/firebase.js"></script>
+        <script src="assets/vendor/handlebars/handlebars.runtime.min.js"></script>
+        <script src="assets/vendor/Sortable/Sortable.min.js"></script>
+        <script src="assets/vendor/lovefield/dist/lovefield.min.js"></script>
+        <script src="assets/vendor/moment/moment.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js assets/scripts/main.js -->
+        <script src="assets/scripts/precompiledJst.js"></script>
+        <script src="assets/scripts/main.js"></script>
+        <!-- endbuild -->
+    {{/block}}
+</body>
+</html>

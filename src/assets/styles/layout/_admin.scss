@@ -1,0 +1,28 @@
+.admin {
+    display: flex;
+    flex-direction: row;
+    background-color: #f1f1f1;
+    color: $COLOR_TEXT;
+}
+
+.admin-sidebar {
+    width: 80px;
+    background-color: $COLOR_BRAND_DARK;
+}
+
+.admin-content {
+    width: 100%;
+}
+
+.admin-content-hd {
+    box-sizing: border-box;
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    color: white;
+    background-color: $COLOR_BRAND;
+}
+
+.admin-content-bd {
+    padding: 20px;
+}

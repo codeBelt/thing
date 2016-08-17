@@ -1,0 +1,12 @@
+.error {
+    display: none;
+    text-align: center;
+    color: $COLOR_TEXT;
+    padding: 10px;
+    background-color: $COLOR_UI_ACCENT;
+    box-shadow: 0 0 6px rgba(black, 0.45);
+}
+
+.error.isActive {
+    display: block;
+}

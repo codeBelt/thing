@@ -1,0 +1,58 @@
+<!doctype html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- META DATA -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--[if IE]><meta http-equiv="cleartype" content="on" /><![endif]-->
+
+    <!-- SEO -->
+    <title>Nerdery.BeerApp</title>
+
+    <!-- STYLESHEETS -->
+    {{#block "styles"}}
+        <!-- build:css assets/styles/head.css?v=@@version -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <link rel="stylesheet" media="screen, projection" href="assets/styles/modern.css?v=@@version" />
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Asap:700' rel='stylesheet' type='text/css'>
+    {{/block}}
+
+    <!-- POLYFILLS -->
+    {{#block "scriptsHead"}}
+        <!-- build:js assets/scripts/head.js?v=@@version -->
+        <!-- endbuild -->
+    {{/block}}
+</head>
+<body class="loginBody">
+    {{>partials/_icons}}
+
+    <div class="site">
+        <div class="site-hd"></div>
+        <div class="site-bd">
+            <!-- CONTENT -->
+            {{#block "body"}}
+            {{/block}}
+        </div>
+        <div class="site-ft"></div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    {{#block "scriptsBody"}}
+        <!-- build:js assets/scripts/vendor.js?v=@@version -->
+        <script src="assets/vendor/form2js/src/form2js.js?v=@@version"></script>
+        <script src="assets/vendor/lovefield/dist/lovefield.js?v=@@version"></script>
+        <script src="assets/vendor/firebase/firebase.js?v=@@version"></script>
+        <script src="assets/vendor/fastclick/lib/fastclick.js?v=@@version"></script>
+        <script src="assets/vendor/handlebars/handlebars.runtime.min.js?v=@@version"></script>
+        <script src="assets/vendor/jquery/dist/jquery.min.js?v=@@version"></script>
+        <!-- endbuild -->
+
+        <!-- build:js assets/scripts/main.js?v=@@version -->
+        <script src="assets/scripts/precompiledJst.js?v=@@version"></script>
+        <script src="assets/scripts/main.js?v=@@version"></script>
+        <!-- endbuild -->
+    {{/block}}
+</body>
+</html>

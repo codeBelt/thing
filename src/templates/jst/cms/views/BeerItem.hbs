@@ -1,0 +1,66 @@
+{{#each beerModels}}
+    <li class="listItem"><!-- need SRM value -->
+        <div class="listItem-options">
+            <button class="btn mix-btn_sm {{#if isActive}}isActiveBtn{{/if}} js-activeBtn" title="Active" data-beer-id="{{beerId}}">
+                <span class="btn-stateInactive">
+                    <span class="icon icon_inactive">
+                        <svg class="icon-inner">
+                            <use xlink:href="#icon_inactive"></use>
+                        </svg>
+                    </span>
+                </span>
+                <span class="btn-stateActive">
+                    <span class="icon icon_active">
+                        <svg class="icon-inner">
+                            <use xlink:href="#icon_active"></use>
+                        </svg>
+                    </span>
+                </span>
+            </button>
+            <button class="btn mix-btn_sm {{#if isTapEmpty}}isActiveBtn{{/if}} js-emptyBtn" title="Empty" data-beer-id="{{beerId}}">
+                <span class="btn-stateInactive">
+                    <span class="icon icon_full">
+                        <svg class="icon-inner">
+                            <use xlink:href="#icon_full"></use>
+                        </svg>
+                    </span>
+                </span>
+                <span class="btn-stateActive">
+                    <span class="icon icon_empty">
+                        <svg class="icon-inner">
+                            <use xlink:href="#icon_empty"></use>
+                        </svg>
+                    </span>
+                </span>
+            </button>
+            <button class="btn mix-btn_sm js-editBtn" title="Edit" data-beer-id="{{beerId}}">
+                <span class="icon icon_edit">
+                    <svg class="icon-inner">
+                        <use xlink:href="#icon_edit"></use>
+                    </svg>
+                </span>
+            </button>
+            <button class="btn mix-btn_sm js-deleteBtn" title="Delete" data-beer-id="{{beerId}}">
+                <span class="icon icon_delete">
+                    <svg class="icon-inner">
+                        <use xlink:href="#icon_delete"></use>
+                    </svg>
+                </span>
+            </button>
+        </div>
+        <div class="listItem-img">
+            <img src="{{imagePath}}" alt="{{{name}}}" width="130" height="130"/>
+        </div>
+        <div class="listItem-name">
+            <div>{{{company}}}</div>
+            <div>{{{name}}}</div>
+            <div>{{{abv}}}% ABV</div>
+        </div>
+        <div class="listItem-desc">{{{description}}}</div>
+        {{#if @root.isDraggable}}
+            <div class="listItem-handle">
+                <div class="listItem-handle-icon"></div>
+            </div>
+        {{/if}}
+    </li>
+{{/each}}

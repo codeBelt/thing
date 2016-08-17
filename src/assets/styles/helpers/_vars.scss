@@ -1,0 +1,48 @@
+/* ---------------------------------------------------------------------
+Font Properties
+------------------------------------------------------------------------ */
+$FONT: 'Source Sans Pro', sans-serif;
+$FONT_SECONDARY: 'Asap', sans-serif;
+
+$FONT_SIZE: 16px;
+
+$FONT_WEIGHT_NORMAL: 400;
+$FONT_WEIGHT_BOLD: 700;
+
+/* ---------------------------------------------------------------------
+Common Colors
+------------------------------------------------------------------------ */
+
+// TEXT COLOR VARIABLES
+$COLOR_TEXT: #474747;
+
+// COLOR BRAND VARIABLES
+$COLOR_BRAND: #007B89;
+$COLOR_BRAND_DARK: #334546;
+$COLOR_BRAND_COMPLEMENTARY: #00b08a;
+$COLOR_BRAND_COMPLEMENTARY_DARK: #664659;
+
+$COLOR_UI_ACCENT: #e2de00;
+$COLOR_UI_ACCENT_HOVER: #ccc72c;
+$COLOR_UI_LIGHT: #e8e8e8;
+$COLOR_UI_ALERT: #ff0000;
+
+/* ---------------------------------------------------------------------
+Viewport Widths & BREAKPOINTS
+------------------------------------------------------------------------ */
+
+$WIDTH_XS: 520px;
+$WIDTH_SM: 768px;
+$WIDTH_MD: 960px;
+$WIDTH_LG: 1200px;
+
+$SITE_MAX_WIDTH: $WIDTH_LG;
+$SITE_WIDTH_MIN: 300px;
+
+$GRID-BP: 768px;
+
+/* ---------------------------------------------------------------------
+Transition variables
+------------------------------------------------------------------------ */
+
+$TRANSITION_DURATION: 150ms;

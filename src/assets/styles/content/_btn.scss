@@ -1,0 +1,84 @@
+.btn {
+    appearance: none;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    border: 0;
+    padding: 10px 40px;
+    font-family: $FONT_SECONDARY;
+    font-weight: $FONT_WEIGHT_BOLD;
+    font-size: 18px;
+    line-height: 1.6667;
+    color: $COLOR_TEXT;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: $COLOR_UI_ACCENT;
+    cursor: pointer;
+    transition: all $TRANSITION_DURATION ease;
+}
+
+.btn + .btn {
+    margin-left: 14px;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: $COLOR_UI_ACCENT_HOVER;
+}
+
+.btn_secondary {
+    background-color: $COLOR_UI_LIGHT;
+}
+
+.btn_secondary:hover,
+.btn_secondary:focus {
+    background-color: darken($COLOR_UI_LIGHT, 5%);
+}
+
+.btn-stateActive {
+    display: none;
+}
+
+.btn-stateInactive {
+    display: block;
+}
+
+.mix-btn_sm {
+    padding: 0px 8px;
+    font-size: 14px;
+    background-color: #e6e6e6;
+    svg {
+        fill: $COLOR_TEXT;
+    }
+}
+
+.mix-btn_sm:hover {
+    color: white;
+    background-color: #333;
+    svg {
+        fill: white;
+    }
+}
+
+.mix-btn_block {
+    display: block;
+    width: 100%;
+}
+
+.isActiveBtn {
+    background-color: $COLOR_BRAND_COMPLEMENTARY;
+    svg {
+        fill: white;
+    }
+}
+
+.isActiveBtn {
+    .btn-stateInactive {
+        display: none;
+    }
+    .btn-stateActive {
+        display: block;
+    }
+}

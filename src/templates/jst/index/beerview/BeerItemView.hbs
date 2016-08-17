@@ -1,0 +1,24 @@
+<li class="feature-item feature-item_4up">
+    <div class="beerTile js-BeerItemView-isActive"> {{!-- {{#if isActive}}isActive{{/if}} --}}
+        <div class="beerTile-hd js-BeerItemView-kegContainer">
+            {{!-- svg keg --}}
+        </div>
+        <div class="beerTile-abv">
+            <span class="beerTile-abv-value">{{{abv}}}%</span>
+            <span class="beerTile-abv-label">abv</span>
+        </div>
+        <div class="beerTile-bd">
+            <div class="beerTile-bd-hdg">{{{company}}}</div>
+            <div class="beerTile-bd-subHdg">{{{name}}}</div>
+            <div class="beerTile-bd-content">
+                <p>{{{description}}}</p>
+                {{#if isCoorsLight}}
+                    <p class="beerTile-bd-content-note">Founders&rsquo; fave. The other taps rotate but this one&rsquo;s a staple.</p>
+                {{/if}}
+            </div>
+            <div class="beerTile-bd-media">
+                <img src="{{imagePath}}" alt="" />
+            </div>
+        </div>
+    </div>
+</li>

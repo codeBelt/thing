@@ -1,0 +1,123 @@
+/* ---------------------------------------------------------------------
+Utility mixins
+------------------------------------------------------------------------ */
+@mixin isVisuallyHidden() {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    border: 0;
+    position: absolute;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+@mixin isHidden() {
+    display: none !important;
+}
+
+@mixin isNotHidden() {
+    display: block !important;
+}
+
+@mixin isTemporarilyHidden() {
+    position: absolute !important;
+    left: -9999px !important;
+}
+
+@mixin isNotTemporarilyHidden() {
+    position: relative !important;
+    left: 0 !important;
+}
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin removeClearfix() {
+    &:before,
+    &:after {
+        content: normal;
+        display: inline;
+    }
+
+    &:after {
+        clear: none;
+    }
+}
+
+@mixin image-replacement() {
+    overflow: hidden;
+    &:before {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 200%;
+    }
+}
+
+/* ---------------------------------------------------------------------
+CSS Triangle (pseudo element)
+
+Create a triangle using CSS.
+Includes properties for pseudo elements (::before, ::after).
+
+@param $direction up, down, left, right
+@param $size pixel value
+@param $color hex value
+
+Example:  @include pseudo-triangle(7px, 14px, #ffffff, right);
+------------------------------------------------------------------------ */
+@mixin pseudo-triangle($width, $height, $color, $direction) {
+
+    // Standard properties
+    width: 0;
+    height: 0;
+
+    // Pseudo Element properties
+    content: '';
+    position: absolute;
+    z-index: 2;
+
+    @if ($direction == "up") {
+        border-left: ($width/2) solid transparent;
+        border-right: ($width/2) solid transparent;
+        border-bottom: $height solid $color;
+    }
+    @else if ($direction == "down") {
+        border-left: ($width/2) solid transparent;
+        border-right: ($width/2) solid transparent;
+        border-top: $height solid $color;
+    }
+    @else if ($direction == "left") {
+        border-top: ($height/2) solid transparent;
+        border-bottom: ($height/2) solid transparent;
+        border-right: $width solid $color;
+    }
+    @else if ($direction == "right") {
+        border-top: ($height/2) solid transparent;
+        border-bottom: ($height/2) solid transparent;
+        border-left: $width solid $color;
+    }
+
+}
+
+//----------------------------------------------------------------------
+// Utility classes
+//----------------------------------------------------------------------
+
+.u-isHidden {
+    @include isHidden();
+}
+
+.u-isVisuallyHidden {
+    @include isVisuallyHidden();
+}

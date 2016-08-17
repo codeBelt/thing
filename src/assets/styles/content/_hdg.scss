@@ -1,0 +1,37 @@
+.hdg {
+    font-family: $FONT_SECONDARY;
+    font-weight: $FONT_WEIGHT_BOLD;
+}
+
+.hdg_1 {
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.hdg_name {
+    margin-bottom: 6px;
+    font-size: 32px;
+    font-weight: $FONT_WEIGHT_NORMAL;
+    line-height: 1.277;
+    color: white;
+}
+
+.hdg_company,
+.hdg_abv {
+    font-size: 16px;
+    font-weight: $FONT_WEIGHT_NORMAL;
+    line-height: 1.277;
+    color: white;
+    text-transform: uppercase;
+}
+
+.hdg_company {
+    font-size: 17px;
+    color: #C7E5DD;
+}
+
+.hdg_abv {
+    margin-top: 2px;
+    font-weight: bold;
+    color: $COLOR_UI_ACCENT;
+}

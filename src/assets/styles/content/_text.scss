@@ -1,0 +1,11 @@
+.text_link {
+    color: $COLOR_BRAND_COMPLEMENTARY_DARK;
+    text-decoration: none;
+    transition: color $TRANSITION_DURATION ease-in-out;
+}
+
+.text_link:hover,
+.text_link:focus {
+    text-decoration: underline;
+    color: darken($COLOR_BRAND_COMPLEMENTARY_DARK, 5%);
+}

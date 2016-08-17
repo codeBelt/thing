@@ -1,0 +1,48 @@
+.beerImage {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border-radius: 4px;
+    background-color: $COLOR_BRAND_DARK;
+    overflow: hidden;
+}
+
+.beerImage:before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+}
+
+.beerImage-inner {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    bottom: 6px;
+    left: 6px;
+    background-color: white;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.isEmpty .beerImage-inner {
+    opacity: 0.5;
+    filter: saturate(0%);
+}
+
+.beerImage-empty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 6px 0;
+    background-color: $COLOR_BRAND_DARK;
+    color: $COLOR_UI_ACCENT;
+    font-size: 20px;
+    font-weight: $FONT_WEIGHT_BOLD;
+    text-transform: uppercase;
+    transform: translate(64px, 37px) rotate(45deg);
+}

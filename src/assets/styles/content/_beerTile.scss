@@ -1,0 +1,80 @@
+.beerTile {
+    border-top: 6px solid transparent;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.beerTile.isActive {
+    border-top-color: #dedf22;
+}
+
+.beerTile-hd { // svg keg
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 6px;
+    background-color: #166778;
+}
+
+.beerTile-abv {
+    padding: 16px 26px;
+    color: #dedf22;
+    background-color: #54426d;
+}
+
+.beerTile-abv-value {
+    font-size: 25px;
+}
+
+.beerTile-abv-label {
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.beerTile-bd {
+    padding: 22px 24px;
+    color: #293c3d;
+    background-color: #eeeeee;
+    position: relative;
+}
+
+.beerTile-bd-hdg {
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.beerTile-bd-subHdg {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.beerTile-bd-content {
+    margin-bottom: 60px;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.beerTile-bd-content > p + p {
+    margin-top: 12px;
+}
+
+.beerTile-bd-content-note {
+    font-size: 21px;
+    color: #0a7e8a;
+}
+
+.beerTile-bd-media {
+    width: 100px;
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+}
+
+.beerTile-bd-media > img {
+    display: block;
+    border-radius: 50%;
+}

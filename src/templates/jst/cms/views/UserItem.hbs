@@ -1,0 +1,50 @@
+{{#each this}}
+    <li class="listItem"><!-- need SRM value -->
+        <div class="listItem-options">
+            <button class="btn mix-btn_sm js-editBtn" data-user-id="{{userId}}">
+                <span class="icon icon_edit">
+                    <svg class="icon-inner">
+                        <use xlink:href="#icon_edit"></use>
+                    </svg>
+                </span>
+            </button>
+            <button class="btn mix-btn_sm js-deleteBtn" data-user-id="{{userId}}">
+                <span class="icon icon_delete">
+                    <svg class="icon-inner">
+                        <use xlink:href="#icon_delete"></use>
+                    </svg>
+                </span>
+            </button>
+        </div>
+        <div class="listItem-user">
+            <div class="listItem-user-name">
+                {{{name}}}
+            </div>
+            <div class="listItem-user-email">
+                {{{email}}}
+            </div>
+        </div>
+    </li>
+    <!-- <tr>
+        <td>{{{name}}}</td>
+        <td>{{{email}}}</td>
+        <td>
+            <button class="btn mix-btn_sm js-editBtn" data-user-id="{{userId}}">
+                <span class="icon icon_edit">
+                    <svg class="icon-inner">
+                        <use xlink:href="#icon_edit"></use>
+                    </svg>
+                </span>
+            </button>
+        </td>
+        <td>
+            <button class="btn mix-btn_sm js-deleteBtn" data-user-id="{{userId}}">
+                <span class="icon icon_delete">
+                    <svg class="icon-inner">
+                        <use xlink:href="#icon_delete"></use>
+                    </svg>
+                </span>
+            </button>
+        </td>
+    </tr> -->
+{{/each}}
