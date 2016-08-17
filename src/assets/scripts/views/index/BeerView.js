@@ -5,22 +5,11 @@ import BeerAction from '../../actions/BeerAction';
 import BeerItemView from './beerview/BeerItemView';
 
 /**
- * TODO: YUIDoc_comment
- *
  * @class BeerView
  * @extends DOMElement
  * @constructor
  **/
 class BeerView extends DOMElement {
-
-    /**
-     * TODO: YUIDoc_comment
-     *
-     * @property _beerItemsContainer
-     * @type {DOMElement}
-     * @protected
-     */
-    _beerItemsContainer = null;
 
     /**
      * TODO: YUIDoc_comment
@@ -39,9 +28,7 @@ class BeerView extends DOMElement {
      * @overridden DOMElement.create
      */
     create() {
-        super.create();
-
-        this._beerItemsContainer = this.getChild('.js-BeerView-itemsContainer');
+        super.create('div', { Class: 'pt-page'});
 
         BeerAction.loadBeers();
     }
@@ -73,14 +60,14 @@ class BeerView extends DOMElement {
      */
     layout() {
         if (BeerStore.getCount() > 0) {
-            this._beerItemsContainer.removeChildren(true);
+            this.removeChildren(true);
 
             const beerModels = BeerStore.getActiveModels();
 
             beerModels.forEach((beerModel, index) => {
                 const beerTapNumber = index + 1;
                 const beerItemView = new BeerItemView(beerModel, beerTapNumber, this._beerFlowFirebase);
-                this._beerItemsContainer.addChild(beerItemView);
+                this.addChild(beerItemView);
             });
         }
     }

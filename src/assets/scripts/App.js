@@ -1,7 +1,6 @@
 import DOMElement from 'structurejs/display/DOMElement';
 
 import ModalManager from './controllers/ModalManager';
-import CMSView from './views/CMSView';
 import IndexView from './views/IndexView';
 
 /*
@@ -31,8 +30,6 @@ import IndexView from './views/IndexView';
  */
 
 /**
- * TODO: YUIDoc_comment
- *
  * @class App
  * @extends DOMElement
  * @constructor
@@ -52,19 +49,10 @@ class App extends DOMElement {
         ModalManager.setView(this);
 
         this.createComponents([
-            {selector: '.js-IndexView', component: IndexView},
-            {selector: '.js-CMSView', component: CMSView}
+            {selector: '.js-IndexView', component: IndexView}
         ]);
     }
 
 }
 
 export default App;
-
-// http://www.micromatic.com/beer-questions/sizes-keg-draft-beer-available-aid-11.html
-
-// Role-based security in Firebase
-// https://gist.github.com/sararob/331760829a9dcb4be3e7
-
-// http://codepen.io/rob-m-andrews/pen/pvVjNB
-// http://codepen.io/simsketch/pen/pJbYKx
