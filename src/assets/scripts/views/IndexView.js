@@ -1,6 +1,6 @@
 import DOMElement from 'structurejs/display/DOMElement';
 
-import SliderComponent from './SliderComponent';
+import SliderComponent from './components/SliderComponent';
 import ImageView from './ImageView';
 
 /**

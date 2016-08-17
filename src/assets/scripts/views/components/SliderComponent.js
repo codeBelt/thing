@@ -2,7 +2,7 @@ import DOMElement from 'structurejs/display/DOMElement';
 import Timer from 'structurejs/util/Timer';
 import TimerEvent from 'structurejs/event/TimerEvent';
 
-import AnimationFactory from '../utils/AnimationFactory';
+import AnimationFactory from '../../utils/AnimationFactory';
 
 /**
  * @class SliderComponent
