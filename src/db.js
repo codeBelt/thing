@@ -46,11 +46,12 @@ const _exampleModel = (num) => {
  */
 const fakeData = {
     // Static data api example. Returns a single object.
-    static: {
-        id: 1,
-        title: 'json-server',
-        description: 'typicode'
-    },
+    images: [
+        'http://www.bikes.com/sites/default/files/models/MAIDEN%20WORLD%20CUP%20SIDE.jpg',
+        'http://www.bikes.com/sites/default/files/models/THUNDERBOLT%20799%20MSL%20SIDE.jpg',
+        'http://www.bikes.com/sites/default/files/models/ALTITUDE%20750%20MSL%20SIDE_REVISED.jpg',
+        'http://www.bikes.com/sites/default/files/models/2016-Sherpa-side.jpg',
+    ],
 
     // Generated data api example. Returns an array of 20 objects.
     generated: _.times(20, (num) => _exampleModel(num))

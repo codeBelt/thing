@@ -7,7 +7,9 @@
     "jquery": "~2.2.3",
     "modernizr": "git://github.com/components/modernizr#2.8.3",
     "structurejs": "~0.12.4",
-    "moment": "~2.13.0"
+    "moment": "~2.13.0",
+    "fetch": "~1.0.0",
+    "Chart.js": "~2.2.1"
   },
   "devDependencies": {}
 }

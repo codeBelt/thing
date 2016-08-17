@@ -1,5 +1,6 @@
 import DOMElement from 'structurejs/display/DOMElement';
 
+import BaseApiService from '../services/BaseApiService';
 import SliderComponent from './components/SliderComponent';
 import ImageView from './ImageView';
 
@@ -36,11 +37,6 @@ class IndexView extends DOMElement {
     create() {
         super.create();
 
-        // http://www.bikes.com/sites/default/files/models/MAIDEN%20WORLD%20CUP%20SIDE.jpg
-        // http://www.bikes.com/sites/default/files/models/THUNDERBOLT%20799%20MSL%20SIDE.jpg
-        // http://www.bikes.com/sites/default/files/models/ALTITUDE%20750%20MSL%20SIDE_REVISED.jpg
-        // http://www.bikes.com/sites/default/files/models/2016-Sherpa-side.jpg
-
         this._sliderComponent = new SliderComponent(this.$element.find('.js-SliderComponent'));
         this.addChild(this._sliderComponent);
 
@@ -52,6 +48,8 @@ class IndexView extends DOMElement {
         this._$time = this.$element.find('.js-IndexView-time');
 
         setInterval(() => this._onDateTimeUpdate(), 1000);
+
+        this._fetchData();
     }
 
     //--------------------------------------------------------------------------------
@@ -65,6 +63,18 @@ class IndexView extends DOMElement {
     _onDateTimeUpdate() {
         this._$date.text(moment().format('MMM D'));
         this._$time.text(moment().format('h:mma'));
+    }
+
+    /**
+     * TODO: YUIDoc_comment
+     *
+     * @method _fetchData
+     * @protected
+     */
+    async _fetchData() {
+        const apiService = new BaseApiService();
+        const response = await apiService.getRequest('/api/images');
+        console.log(`response`, response);
     }
 
 }
