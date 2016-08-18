@@ -28,7 +28,7 @@ class SliderComponent extends DOMElement {
     _$nextPage = null;
     // _$pages = null;
 
-    constructor($element) {
+    constructor($element) { // eslint-disable-line no-useless-constructor
         super($element);
     }
 
@@ -86,6 +86,7 @@ class SliderComponent extends DOMElement {
 
     /**
      * @overridden DOMElement.addChild
+     * @param {DOMElement} child
      */
     addChild(child) {
         super.addChild(child);
@@ -111,7 +112,7 @@ class SliderComponent extends DOMElement {
      * @public
      */
     nextPage() {
-        if(this._isAnimating === true) { return; }
+        if (this._isAnimating === true) { return; }
         this._isAnimating = true;
 
         this._$currPage = this
@@ -126,7 +127,8 @@ class SliderComponent extends DOMElement {
             .addClass('pt-page-current');
 
 
-        this._currentAnimationIndex = (this._currentAnimationIndex === this.TOTAL_ANIMATIONS) ? 1 : ++this._currentAnimationIndex;
+        this._currentAnimationIndex = (this._currentAnimationIndex === this.TOTAL_ANIMATIONS)
+            ? 1 : ++this._currentAnimationIndex;
         const animationData = AnimationFactory.getAnimation(this._currentAnimationIndex);
 
         this._$currPage
@@ -134,20 +136,22 @@ class SliderComponent extends DOMElement {
             .addEventListener('animationend', this._onCurrentPageAnimationEnd, this);
 
         this._$nextPage
-            .addClass( animationData.inClass )
+            .addClass(animationData.inClass)
             .addEventListener('animationend', this._onNextPageAnimationEnd, this);
     }
 
     /**
      * @method _onEndAnimation
+     * @param {JQuery} $currentPage
+     * @param {JQuery} $nextPage
      * @protected
      */
     _onEndAnimation($currentPage, $nextPage) {
         this._endCurrPage = false;
         this._endNextPage = false;
 
-        $currentPage.attr('class', $currentPage.data( 'originalClassList' ));
-        $nextPage.attr('class', $nextPage.data( 'originalClassList' ) + ' pt-page-current');
+        $currentPage.attr('class', $currentPage.data('originalClassList'));
+        $nextPage.attr('class', `${$nextPage.data('originalClassList')} pt-page-current`);
 
         this._isAnimating = false;
     }
@@ -158,6 +162,7 @@ class SliderComponent extends DOMElement {
 
     /**
      * @method _onCurrentPageAnimationEnd
+     * @param {JQueryEventObject} event
      * @protected
      */
     _onCurrentPageAnimationEnd(event) {
@@ -165,13 +170,14 @@ class SliderComponent extends DOMElement {
 
         this._endCurrPage = true;
 
-        if( this._endNextPage ) {
+        if (this._endNextPage) {
             this._onEndAnimation(this._$currPage, this._$nextPage);
         }
     }
 
     /**
      * @method _onNextPageAnimationEnd
+     * @param {JQueryEventObject} event
      * @protected
      */
     _onNextPageAnimationEnd(event) {
@@ -179,13 +185,14 @@ class SliderComponent extends DOMElement {
 
         this._endNextPage = true;
 
-        if(this._endCurrPage) {
+        if (this._endCurrPage) {
             this._onEndAnimation(this._$currPage, this._$nextPage);
         }
     }
 
     /**
      * @method _onTick
+     * @param {JQueryEventObject} event
      * @protected
      */
     _onTick(event) {

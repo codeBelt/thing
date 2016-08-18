@@ -7,7 +7,7 @@ import DOMElement from 'structurejs/display/DOMElement';
  **/
 class ChartView extends DOMElement {
 
-    constructor() {
+    constructor() { // eslint-disable-line no-useless-constructor
         super();
     }
 
@@ -76,7 +76,6 @@ class ChartView extends DOMElement {
      * @protected
      */
     _buildChart() {
-
         const options = {
             label: 'My First dataset',
             fill: false,
@@ -116,8 +115,8 @@ class ChartView extends DOMElement {
                 Object.assign({}, options, {
                     label: 'Analyst',
                     data: [22, 11, 66, 66, 66, 34, 88, 66, 11],
-                })
-            ]
+                }),
+            ],
         };
 
         this._chart = new Chart(chartCanvasContext, {
@@ -136,7 +135,7 @@ class ChartView extends DOMElement {
                 // tooltips: {
                 //     enabled: false
                 // }
-            }
+            },
         });
     }
 }

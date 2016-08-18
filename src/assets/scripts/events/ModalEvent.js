@@ -45,7 +45,7 @@ class ModalEvent extends BaseEvent {
      */
     static ACCEPT = 'ModalEvent.accept';
 
-    constructor(type, bubbles, cancelable, data) {
+    constructor(type, bubbles, cancelable, data) { // eslint-disable-line no-useless-constructor
         super(type, bubbles, cancelable, data);
     }
 

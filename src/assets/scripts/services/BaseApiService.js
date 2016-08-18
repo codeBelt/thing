@@ -7,7 +7,7 @@
  **/
 class BaseApiService extends Map {
 
-    constructor() {
+    constructor() { // eslint-disable-line no-useless-constructor
         super();
     }
 
@@ -15,8 +15,8 @@ class BaseApiService extends Map {
      * Method to make ajax request.
      *
      * @method getRequest
-     * @param endpoint {string}
-     * @param [obj=null] {any}
+     * @param {string} endpoint
+     * @param {any} [obj=null]
      * @return {Promise<any>}
      * @public
      */
@@ -24,9 +24,9 @@ class BaseApiService extends Map {
         const options = Object.assign({}, obj, {
             method: 'GET',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-            }
+            },
         });
         const response = await this._fetch(endpoint, options);
 
@@ -37,8 +37,8 @@ class BaseApiService extends Map {
      * Method to make ajax request.
      *
      * @method postRequest
-     * @param endpoint {string}
-     * @param [obj=null] {any}
+     * @param {string} endpoint
+     * @param {any} [obj=null]
      * @return {Promise<any>}
      * @public
      */
@@ -46,10 +46,10 @@ class BaseApiService extends Map {
         const response = await this._fetch(endpoint, {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(obj)
+            body: JSON.stringify(obj),
         });
 
         return await response.json();
@@ -59,8 +59,8 @@ class BaseApiService extends Map {
      * Method to make ajax request.
      *
      * @method putRequest
-     * @param endpoint {string}
-     * @param [obj=null] {any}
+     * @param {string} endpoint
+     * @param {any} [obj=null]
      * @return {Promise<any>}
      * @public
      */
@@ -68,10 +68,10 @@ class BaseApiService extends Map {
         const response = await this._fetch(endpoint, {
             method: 'PUT',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(obj)
+            body: JSON.stringify(obj),
         });
 
         return await response.json();
@@ -81,8 +81,8 @@ class BaseApiService extends Map {
      * Method to make ajax request.
      *
      * @method patchRequest
-     * @param endpoint {string}
-     * @param [obj=null] {any}
+     * @param {string} endpoint
+     * @param {any} [obj=null]
      * @return {Promise<any>}
      * @public
      */
@@ -90,10 +90,10 @@ class BaseApiService extends Map {
         const response = await this._fetch(endpoint, {
             method: 'PATCH',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(obj)
+            body: JSON.stringify(obj),
         });
 
         return await response.json();
@@ -103,8 +103,8 @@ class BaseApiService extends Map {
      * Method to make ajax request.
      *
      * @method patchFormDataRequest
-     * @param endpoint {string}
-     * @param formData {any}
+     * @param {string} endpoint
+     * @param {any} formData
      * @return {Promise<any>}
      * @public
      */
@@ -112,9 +112,9 @@ class BaseApiService extends Map {
         const response = await this._fetch(endpoint, {
             method: 'PATCH',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
             },
-            body: formData
+            body: formData,
         });
 
         return await response.json();
@@ -124,8 +124,8 @@ class BaseApiService extends Map {
      * Method to make ajax request.
      *
      * @method deleteRequest
-     * @param endpoint {string}
-     * @param [obj=null] {any}
+     * @param {string} endpoint
+     * @param {any} [obj=null]
      * @return {Promise<any>}
      * @public
      */
@@ -133,9 +133,9 @@ class BaseApiService extends Map {
         const options = Object.assign({}, obj, {
             method: 'DELETE',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-            }
+            },
         });
         const response = await this._fetch(endpoint, options);
 
@@ -144,16 +144,17 @@ class BaseApiService extends Map {
 
     /**
      * @method _fetch
+     * @param {string} endpoint
+     * @param {any} options
      * @protected
+     * @returns {void}
      */
     async _fetch(endpoint, options = {}) {
         try {
             // Using fetch - https://github.com/github/fetch
             const response = await fetch(endpoint, options);
-
             return response;
-
-        } catch(error) { console.error(error.stack); }
+        } catch (error) { console.error(error.stack); }
     }
 
 }

@@ -36,7 +36,7 @@ import IndexView from './views/IndexView';
  **/
 class App extends DOMElement {
 
-    constructor() {
+    constructor() { // eslint-disable-line no-useless-constructor
         super();
     }
 
@@ -49,7 +49,7 @@ class App extends DOMElement {
         ModalManager.setView(this);
 
         this.createComponents([
-            {selector: '.js-IndexView', component: IndexView}
+            { selector: '.js-IndexView', component: IndexView },
         ]);
     }
 

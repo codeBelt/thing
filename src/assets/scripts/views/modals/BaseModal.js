@@ -72,6 +72,8 @@ class BaseModal extends DOMElement {
 
     /**
      * @overridden DOMElement.create
+     * @param {string|null} template
+     * @param {any} data
      */
     create(template = null, data = null) {
         super.create(template, data);
@@ -129,7 +131,7 @@ class BaseModal extends DOMElement {
      * {{#crossLink "ModalEvent"}}{{/crossLink}}.{{#crossLink "ModalEvent/REJECT:event"}}{{/crossLink}} event.
      *
      * @method _onRejectModal
-     * @param event {JQueryEventObject}
+     * @param {JQueryEventObject} event
      * @protected
      */
     _onRejectModal(event) {
@@ -147,7 +149,7 @@ class BaseModal extends DOMElement {
      * {{#crossLink "ModalEvent"}}{{/crossLink}}.{{#crossLink "ModalEvent/ACCEPT:event"}}{{/crossLink}} event.
      *
      * @method _onAcceptModal
-     * @param event {JQueryEventObject}
+     * @param {JQueryEventObject} event
      * @protected
      */
     _onAcceptModal(event) {
@@ -164,7 +166,7 @@ class BaseModal extends DOMElement {
      * {{#crossLink "BaseModal/forceInteraction:property"}}{{/crossLink}} property is true.
      *
      * @method _onClickModalUnderlay
-     * @param event {jQueryEventObject}
+     * @param {jQueryEventObject} event
      * @protected
      */
     _onClickModalUnderlay(event) {
@@ -179,7 +181,7 @@ class BaseModal extends DOMElement {
      * Closes the modal
      *
      * @method _onClickModalUnderlay
-     * @param event {jQueryEventObject}
+     * @param {jQueryEventObject} event
      * @protected
      */
     _onCloseModal(event) {

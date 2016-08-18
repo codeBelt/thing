@@ -28,7 +28,7 @@ class IndexView extends DOMElement {
      */
     _$date = null;
 
-    constructor($element) {
+    constructor($element) { // eslint-disable-line no-useless-constructor
         super($element);
     }
 

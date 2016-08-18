@@ -42,7 +42,7 @@ class ModalManager extends EventDispatcher {
      */
     _currentModal = null;
 
-    constructor() {
+    constructor() { // eslint-disable-line no-useless-constructor
         super();
     }
 
@@ -85,7 +85,7 @@ class ModalManager extends EventDispatcher {
      * The view needs to be set before any other interaction with this controller.
      *
      * @method setView
-     * @param view {App}
+     * @param {App} view
      * @public
      */
     setView(view) {
@@ -101,7 +101,7 @@ class ModalManager extends EventDispatcher {
      * Adds a modal to correct view. Also remove the current modal if one is active.
      *
      * @method addModal
-     * @param modal {BaseModal}
+     * @param {BaseModal} modal
      * @public
      */
     addModal(modal) {
@@ -137,7 +137,7 @@ class ModalManager extends EventDispatcher {
      * event this method will remove the modal from the display view.
      *
      * @method _onAddModal
-     * @param event {ModalEvent}
+     * @param {ModalEvent} event
      * @protected
      */
     _onAddModal(event) {
@@ -149,7 +149,7 @@ class ModalManager extends EventDispatcher {
      * event this method will remove the modal from the display view.
      *
      * @method _onCloseModal
-     * @param event {ModalEvent}
+     * @param {ModalEvent} event
      * @protected
      */
     _onCloseModal(event) {
@@ -161,7 +161,7 @@ class ModalManager extends EventDispatcher {
      * by the {{#crossLink "BaseModal/forceInteraction:property"}}{{/crossLink}} property.
      *
      * @method _onEscPress
-     * @param event {JQueryEventObject}
+     * @param {JQueryEventObject} event
      * @protected
      */
     _onEscPress(event) {
@@ -177,7 +177,7 @@ class ModalManager extends EventDispatcher {
      * and data from the button. It will create a GenericModal then pass it to the modal controller to display it.
      *
      * @method _onCreateModal
-     * @param event {JQueryEventObject}
+     * @param {JQueryEventObject} event
      * @protected
      */
     _onCreateModal(event) {
