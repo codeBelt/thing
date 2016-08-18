@@ -40,9 +40,6 @@ class IndexView extends DOMElement {
         this._sliderComponent = new SliderComponent(this.$element.find('.js-SliderComponent'));
         this.addChild(this._sliderComponent);
 
-        this._sliderComponent.addChild(new ImageView('http://www.bikes.com/sites/default/files/models/MAIDEN%20WORLD%20CUP%20SIDE.jpg'));
-        this._sliderComponent.addChild(new ImageView('http://www.bikes.com/sites/default/files/models/THUNDERBOLT%20799%20MSL%20SIDE.jpg'));
-
         // Update date and time displayed
         this._$date = this.$element.find('.js-IndexView-date');
         this._$time = this.$element.find('.js-IndexView-time');
@@ -73,8 +70,12 @@ class IndexView extends DOMElement {
      */
     async _fetchData() {
         const apiService = new BaseApiService();
-        const response = await apiService.getRequest('/api/images');
-        console.log(`response`, response);
+        const imageList = await apiService.getRequest('/api/images');
+
+        imageList.forEach(imagePath => {
+           const imageView = new ImageView(imagePath);
+            this._sliderComponent.addChild(imageView);
+        });
     }
 
 }
