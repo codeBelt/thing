@@ -73,10 +73,10 @@ class IndexView extends DOMElement {
         const apiService = new BaseApiService();
         const imageList = await apiService.getRequest('/api/images');
 
-        imageList.forEach(imagePath => {
-           const imageView = new ImageView(imagePath);
-            this._sliderComponent.addChild(imageView);
-        });
+        // imageList.forEach(imagePath => {
+        //    const imageView = new ImageView(imagePath);
+        //     this._sliderComponent.addChild(imageView);
+        // });
 
         this._sliderComponent.addChild(new ChartView());
     }
