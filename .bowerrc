@@ -1,3 +1,6 @@
 {
-    "directory": "./src/assets/vendor"
+    "directory": "./src/assets/vendor",
+    "resolvers": [
+      "bower-npm-resolver"
+    ]
 }
