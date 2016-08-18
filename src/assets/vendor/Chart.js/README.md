@@ -8,15 +8,15 @@
 
 ## Installation
 
-You can download the latest version of [Chart.js on GitHub](https://github.com/chartjs/Chart.js/releases/latest) or just use these [Chart.js CDN](https://cdnjs.com/libraries/Chart.js) links.
+To download a zip, go to the Chart.js on Github
 
-To install via npm:
+To install via npm / bower:
 
 ```bash
 npm install chart.js --save
+bower install Chart.js --save
 ```
-
-To Install via bower, please follow [these instructions](http://www.chartjs.org/docs/#getting-started-installation).
+CDN: https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js
 
 ## Documentation
 
@@ -29,14 +29,7 @@ Before submitting an issue or a pull request to the project, please take a momen
 For support using Chart.js, please post questions with the [`chartjs` tag on Stack Overflow](http://stackoverflow.com/questions/tagged/chartjs).
 
 ## Building and Testing
-
-To build, run `gulp build`.
-
-To test, run `gulp test`.
-
-To test against code standards, run `gulp jshint`.
-
-More information on building and testing can be found in [gulpfile.js](gulpfile.js).
+`gulp build`, `gulp test`
 
 Thanks to [BrowserStack](https://browserstack.com) for allowing our team to test on thousands of browsers.
 

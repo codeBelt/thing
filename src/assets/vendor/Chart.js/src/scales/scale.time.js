@@ -76,11 +76,7 @@ module.exports = function(Chart) {
 			Chart.Scale.prototype.initialize.call(this);
 		},
 		getLabelMoment: function(datasetIndex, index) {
-			if (typeof this.labelMoments[datasetIndex] != 'undefined') {
-				return this.labelMoments[datasetIndex][index];
-			}
-
-			return null;
+			return this.labelMoments[datasetIndex][index];
 		},
 		getMomentStartOf: function(tick) {
 			var me = this;
@@ -98,7 +94,7 @@ module.exports = function(Chart) {
 			// these
 			var scaleLabelMoments = [];
 			if (me.chart.data.labels && me.chart.data.labels.length > 0) {
-				helpers.each(me.chart.data.labels, function(label) {
+				helpers.each(me.chart.data.labels, function(label, index) {
 					var labelMoment = me.parseTime(label);
 
 					if (labelMoment.isValid()) {
@@ -121,7 +117,7 @@ module.exports = function(Chart) {
 				var datasetVisible = me.chart.isDatasetVisible(datasetIndex);
 
 				if (typeof dataset.data[0] === 'object' && dataset.data[0] !== null) {
-					helpers.each(dataset.data, function(value) {
+					helpers.each(dataset.data, function(value, index) {
 						var labelMoment = me.parseTime(me.getRightValue(value));
 
 						if (labelMoment.isValid()) {
@@ -158,7 +154,7 @@ module.exports = function(Chart) {
 			me.firstTick = (me.firstTick || moment()).clone();
 			me.lastTick = (me.lastTick || moment()).clone();
 		},
-		buildTicks: function() {
+		buildTicks: function(index) {
 			var me = this;
 
 			me.ctx.save();
@@ -244,15 +240,10 @@ module.exports = function(Chart) {
 			// Only round the last tick if we have no hard maximum
 			if (!me.options.time.max) {
 				var roundedEnd = me.getMomentStartOf(me.lastTick);
-				var delta = roundedEnd.diff(me.lastTick, me.tickUnit, true);
-				if (delta < 0) {
+				if (roundedEnd.diff(me.lastTick, me.tickUnit, true) !== 0) {
 					// Do not use end of because we need me to be in the next time unit
 					me.lastTick = me.getMomentStartOf(me.lastTick.add(1, me.tickUnit));
-				} else if (delta >= 0) {
-					me.lastTick = roundedEnd;
 				}
-
-				me.scaleSizeInUnits = me.lastTick.diff(me.firstTick, me.tickUnit, true);
 			}
 
 			me.smallestLabelSeparation = me.width;
@@ -318,7 +309,7 @@ module.exports = function(Chart) {
 			return label;
 		},
 		// Function to format an individual tick mark
-		tickFormatFunction: function(tick, index, ticks) {
+		tickFormatFunction: function tickFormatFunction(tick, index, ticks) {
 			var formattedTick = tick.format(this.displayFormat);
 			var tickOpts = this.options.ticks;
 			var callback = helpers.getValueOrDefault(tickOpts.callback, tickOpts.userCallback);
@@ -334,34 +325,32 @@ module.exports = function(Chart) {
 			me.tickMoments = me.ticks;
 			me.ticks = me.ticks.map(me.tickFormatFunction, me);
 		},
-		getPixelForValue: function(value, index, datasetIndex) {
+		getPixelForValue: function(value, index, datasetIndex, includeOffset) {
 			var me = this;
-			if (!value || !value.isValid) {
-				// not already a moment object
-				value = moment(me.getRightValue(value));
-			}
 			var labelMoment = value && value.isValid && value.isValid() ? value : me.getLabelMoment(datasetIndex, index);
 
 			if (labelMoment) {
 				var offset = labelMoment.diff(me.firstTick, me.tickUnit, true);
 
-				var decimal = offset !== 0 ? offset / me.scaleSizeInUnits : offset;
+				var decimal = offset / me.scaleSizeInUnits;
 
 				if (me.isHorizontal()) {
 					var innerWidth = me.width - (me.paddingLeft + me.paddingRight);
+					var valueWidth = innerWidth / Math.max(me.ticks.length - 1, 1);
 					var valueOffset = (innerWidth * decimal) + me.paddingLeft;
 
 					return me.left + Math.round(valueOffset);
 				} else {
 					var innerHeight = me.height - (me.paddingTop + me.paddingBottom);
+					var valueHeight = innerHeight / Math.max(me.ticks.length - 1, 1);
 					var heightOffset = (innerHeight * decimal) + me.paddingTop;
 
 					return me.top + Math.round(heightOffset);
 				}
 			}
 		},
-		getPixelForTick: function(index) {
-			return this.getPixelForValue(this.tickMoments[index], null, null);
+		getPixelForTick: function(index, includeOffset) {
+			return this.getPixelForValue(this.tickMoments[index], null, null, includeOffset);
 		},
 		getValueForPixel: function(pixel) {
 			var me = this;

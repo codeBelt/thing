@@ -3,6 +3,7 @@ import DOMElement from 'structurejs/display/DOMElement';
 import BaseApiService from '../services/BaseApiService';
 import SliderComponent from './components/SliderComponent';
 import ImageView from './ImageView';
+import ChartView from './ChartView';
 
 /**
  * TODO: YUIDoc_comment
@@ -72,10 +73,12 @@ class IndexView extends DOMElement {
         const apiService = new BaseApiService();
         const imageList = await apiService.getRequest('/api/images');
 
-        imageList.forEach(imagePath => {
-           const imageView = new ImageView(imagePath);
-            this._sliderComponent.addChild(imageView);
-        });
+        // imageList.forEach(imagePath => {
+        //    const imageView = new ImageView(imagePath);
+        //     this._sliderComponent.addChild(imageView);
+        // });
+
+        this._sliderComponent.addChild(new ChartView());
     }
 
 }

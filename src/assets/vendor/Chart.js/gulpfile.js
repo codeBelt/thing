@@ -8,12 +8,12 @@ var gulp = require('gulp'),
   replace = require('gulp-replace'),
   htmlv = require('gulp-html-validator'),
   insert = require('gulp-insert'),
-  zip = require('gulp-zip'),
   inquirer = require('inquirer'),
   semver = require('semver'),
   exec = require('child_process').exec,
   fs = require('fs'),
   package = require('./package.json'),
+  bower = require('./bower.json'),
   karma = require('gulp-karma'),
   browserify = require('browserify'),
   streamify = require('gulp-streamify'),
@@ -49,7 +49,6 @@ var testFiles = [
 ];
 
 gulp.task('build', buildTask);
-gulp.task('package', packageTask);
 gulp.task('coverage', coverageTask);
 gulp.task('watch', watchTask);
 gulp.task('bump', bumpTask);
@@ -102,25 +101,10 @@ function buildTask() {
 
 }
 
-function packageTask() {
-  return merge(
-      // gather "regular" files landing in the package root
-      gulp.src([outDir + '*.js', 'LICENSE.md']),
-
-      // since we moved the dist files one folder up (package root), we need to rewrite
-      // samples src="../dist/ to src="../ and then copy them in the /samples directory.
-      gulp.src('./samples/**/*', { base: '.' })
-        .pipe(streamify(replace(/src="((?:\.\.\/)+)dist\//g, 'src="$1')))
-  )
-  // finally, create the zip archive
-  .pipe(zip('Chart.js.zip'))
-  .pipe(gulp.dest(outDir));
-}
-
 /*
  *  Usage : gulp bump
  *  Prompts: Version increment to bump
- *  Output: - New version number written into package.json
+ *  Output: - New version number written into package.json & bower.json
  */
 function bumpTask(complete) {
   util.log('Current version:', util.colors.cyan(package.version));
@@ -137,11 +121,13 @@ function bumpTask(complete) {
       newVersion = semver.inc(package.version, increment),
       oldVersion = package.version;
 
-    // Set the new versions into the package object
+    // Set the new versions into the bower/package object
     package.version = newVersion;
+    bower.version = newVersion;
 
     // Write these to their own files, then build the output
     fs.writeFileSync('package.json', JSON.stringify(package, null, 2));
+    fs.writeFileSync('bower.json', JSON.stringify(bower, null, 2));
 
     var oldCDN = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/'+oldVersion+'/Chart.min.js',
       newCDN = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/'+newVersion+'/Chart.min.js';

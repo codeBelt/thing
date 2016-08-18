@@ -6,7 +6,6 @@ module.exports = function(Chart) {
 
 	Chart.defaults.line = {
 		showLines: true,
-		spanGaps: false,
 
 		hover: {
 			mode: "label"
@@ -47,7 +46,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		update: function(reset) {
+		update: function update(reset) {
 			var me = this;
 			var meta = me.getMeta();
 			var line = meta.dataset;
@@ -79,7 +78,7 @@ module.exports = function(Chart) {
 					// The default behavior of lines is to break at null values, according
 					// to https://github.com/chartjs/Chart.js/issues/2435#issuecomment-216718158
 					// This option gives linse the ability to span gaps
-					spanGaps: dataset.spanGaps ? dataset.spanGaps : options.spanGaps,
+					spanGaps: dataset.spanGaps ? dataset.spanGaps : false,
 					tension: custom.tension ? custom.tension : helpers.getValueOrDefault(dataset.lineTension, lineElementOptions.tension),
 					backgroundColor: custom.backgroundColor ? custom.backgroundColor : (dataset.backgroundColor || lineElementOptions.backgroundColor),
 					borderWidth: custom.borderWidth ? custom.borderWidth : (dataset.borderWidth || lineElementOptions.borderWidth),
@@ -89,7 +88,6 @@ module.exports = function(Chart) {
 					borderDashOffset: custom.borderDashOffset ? custom.borderDashOffset : (dataset.borderDashOffset || lineElementOptions.borderDashOffset),
 					borderJoinStyle: custom.borderJoinStyle ? custom.borderJoinStyle : (dataset.borderJoinStyle || lineElementOptions.borderJoinStyle),
 					fill: custom.fill ? custom.fill : (dataset.fill !== undefined ? dataset.fill : lineElementOptions.fill),
-					steppedLine: custom.steppedLine ? custom.steppedLine : helpers.getValueOrDefault(dataset.steppedLine, lineElementOptions.stepped),
 					// Scale
 					scaleTop: scale.top,
 					scaleBottom: scale.bottom,
@@ -182,8 +180,8 @@ module.exports = function(Chart) {
 				dataset.pointHitRadius = dataset.hitRadius;
 			}
 
-			x = xScale.getPixelForValue(typeof value === 'object' ? value : NaN, index, datasetIndex, me.chart.isCombo);
-			y = reset ? yScale.getBasePixel() : me.calculatePointY(value, index, datasetIndex);
+			x = xScale.getPixelForValue(value, index, datasetIndex, me.chart.isCombo);
+			y = reset ? yScale.getBasePixel() : me.calculatePointY(value, index, datasetIndex, me.chart.isCombo);
 
 			// Utility
 			point._xScale = xScale;
@@ -203,13 +201,12 @@ module.exports = function(Chart) {
 				borderColor: me.getPointBorderColor(point, index),
 				borderWidth: me.getPointBorderWidth(point, index),
 				tension: meta.dataset._model ? meta.dataset._model.tension : 0,
-				steppedLine: meta.dataset._model ? meta.dataset._model.steppedLine : false,
 				// Tooltip
 				hitRadius: custom.hitRadius || helpers.getValueAtIndexOrDefault(dataset.pointHitRadius, index, pointOptions.hitRadius)
 			};
 		},
 
-		calculatePointY: function(value, index, datasetIndex) {
+		calculatePointY: function(value, index, datasetIndex, isCombo) {
 			var me = this;
 			var chart = me.chart;
 			var meta = me.getMeta();
@@ -222,21 +219,19 @@ module.exports = function(Chart) {
 				for (i = 0; i < datasetIndex; i++) {
 					ds = chart.data.datasets[i];
 					dsMeta = chart.getDatasetMeta(i);
-					if (dsMeta.type === 'line' && dsMeta.yAxisID === yScale.id && chart.isDatasetVisible(i)) {
-						var stackedRightValue = Number(yScale.getRightValue(ds.data[index]));
-						if (stackedRightValue < 0) {
-							sumNeg += stackedRightValue || 0;
+					if (dsMeta.type === 'line' && chart.isDatasetVisible(i)) {
+						if (ds.data[index] < 0) {
+							sumNeg += ds.data[index] || 0;
 						} else {
-							sumPos += stackedRightValue || 0;
+							sumPos += ds.data[index] || 0;
 						}
 					}
 				}
 
-				var rightValue = Number(yScale.getRightValue(value));
-				if (rightValue < 0) {
-					return yScale.getPixelForValue(sumNeg + rightValue);
+				if (value < 0) {
+					return yScale.getPixelForValue(sumNeg + value);
 				} else {
-					return yScale.getPixelForValue(sumPos + rightValue);
+					return yScale.getPixelForValue(sumPos + value);
 				}
 			}
 
@@ -244,18 +239,10 @@ module.exports = function(Chart) {
 		},
 
 		updateBezierControlPoints: function() {
-			var me = this;
-			var meta = me.getMeta();
-			var area = me.chart.chartArea;
-
-			// only consider points that are drawn in case the spanGaps option is ued
-			var points = (meta.data || []).filter(function(pt) { return !pt._model.skip; });
+			var meta = this.getMeta();
+			var area = this.chart.chartArea;
+			var points = meta.data || [];
 			var i, ilen, point, model, controlPoints;
-
-			var needToCap = me.chart.options.elements.line.capBezierPoints;
-			function capIfNecessary(pt, min, max) {
-				return needToCap ? Math.max(Math.min(pt, max), min) : pt;
-			}
 
 			for (i=0, ilen=points.length; i<ilen; ++i) {
 				point = points[i];
@@ -267,10 +254,10 @@ module.exports = function(Chart) {
 					meta.dataset._model.tension
 				);
 
-				model.controlPointPreviousX = capIfNecessary(controlPoints.previous.x, area.left, area.right);
-				model.controlPointPreviousY = capIfNecessary(controlPoints.previous.y, area.top, area.bottom);
-				model.controlPointNextX = capIfNecessary(controlPoints.next.x, area.left, area.right);
-				model.controlPointNextY = capIfNecessary(controlPoints.next.y, area.top, area.bottom);
+				model.controlPointPreviousX = controlPoints.previous.x;
+				model.controlPointPreviousY = controlPoints.previous.y;
+				model.controlPointNextX = controlPoints.next.x;
+				model.controlPointNextY = controlPoints.next.y;
 			}
 		},
 

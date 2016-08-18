@@ -30,7 +30,7 @@ module.exports = function(Chart) {
 			this.updateBezierControlPoints();
 		},
 
-		update: function(reset) {
+		update: function update(reset) {
 			var me = this;
 			var meta = me.getMeta();
 			var line = meta.dataset;
@@ -146,7 +146,7 @@ module.exports = function(Chart) {
 			var easingDecimal = ease || 1;
 
 			// Transition Point Locations
-			helpers.each(meta.data, function(point) {
+			helpers.each(meta.data, function(point, index) {
 				point.transition(easingDecimal);
 			});
 

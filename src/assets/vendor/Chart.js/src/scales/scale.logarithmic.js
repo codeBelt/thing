@@ -177,10 +177,10 @@ module.exports = function(Chart) {
 		getLabelForIndex: function(index, datasetIndex) {
 			return +this.getRightValue(this.chart.data.datasets[datasetIndex].data[index]);
 		},
-		getPixelForTick: function(index) {
-			return this.getPixelForValue(this.tickValues[index]);
+		getPixelForTick: function(index, includeOffset) {
+			return this.getPixelForValue(this.tickValues[index], null, null, includeOffset);
 		},
-		getPixelForValue: function(value) {
+		getPixelForValue: function(value, index, datasetIndex, includeOffset) {
 			var me = this;
 			var innerDimension;
 			var pixel;
@@ -215,8 +215,10 @@ module.exports = function(Chart) {
 		},
 		getValueForPixel: function(pixel) {
 			var me = this;
+			var offset;
 			var range = helpers.log10(me.end) - helpers.log10(me.start);
-			var value, innerDimension;
+			var value;
+			var innerDimension;
 
 			if (me.isHorizontal()) {
 				innerDimension = me.width - (me.paddingLeft + me.paddingRight);

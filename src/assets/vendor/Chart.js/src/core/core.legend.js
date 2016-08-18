@@ -52,7 +52,6 @@ module.exports = function(Chart) {
 						lineJoin: dataset.borderJoinStyle,
 						lineWidth: dataset.borderWidth,
 						strokeStyle: dataset.borderColor,
-						pointStyle: dataset.pointStyle,
 
 						// Below is extra data used for toggling the datasets
 						datasetIndex: i
@@ -202,11 +201,7 @@ module.exports = function(Chart) {
 					ctx.textBaseline = 'top';
 
 					helpers.each(me.legendItems, function(legendItem, i) {
-						var boxWidth = labelOpts.usePointStyle ?
-							fontSize * Math.sqrt(2) :
-							labelOpts.boxWidth;
-
-						var width = boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
+						var width = labelOpts.boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
 						if (lineWidths[lineWidths.length - 1] + width + labelOpts.padding >= me.width) {
 							totalHeight += fontSize + (labelOpts.padding);
 							lineWidths[lineWidths.length] = me.left;
@@ -234,11 +229,7 @@ module.exports = function(Chart) {
 					var itemHeight = fontSize + vPadding;
 
 					helpers.each(me.legendItems, function(legendItem, i) {
-						// If usePointStyle is set, multiple boxWidth by 2 since it represents
-						// the radius and not truly the width
-						var boxWidth = labelOpts.usePointStyle ? 2 * labelOpts.boxWidth : labelOpts.boxWidth;
-
-						var itemWidth = boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
+						var itemWidth = labelOpts.boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
 
 						// If too tall, go to new column
 						if (currentColHeight + itemHeight > minSize.height) {
@@ -286,6 +277,7 @@ module.exports = function(Chart) {
 			var globalDefault = Chart.defaults.global,
 				lineDefault = globalDefault.elements.line,
 				legendWidth = me.width,
+				legendHeight = me.height,
 				lineWidths = me.lineWidths;
 
 			if (opts.display) {
@@ -311,10 +303,6 @@ module.exports = function(Chart) {
 
 				// current position
 				var drawLegendBox = function(x, y, legendItem) {
-					if (isNaN(boxWidth) || boxWidth <= 0) {
-						return;
-					}
-
 					// Set the ctx for the box
 					ctx.save();
 
@@ -330,22 +318,9 @@ module.exports = function(Chart) {
 						ctx.setLineDash(itemOrDefault(legendItem.lineDash, lineDefault.borderDash));
 					}
 
-					if (opts.labels && opts.labels.usePointStyle) {
-						// Recalulate x and y for drawPoint() because its expecting
-						// x and y to be center of figure (instead of top left)
-						var radius = fontSize * Math.SQRT2 / 2;
-						var offSet = radius / Math.SQRT2;
-						var centerX = x + offSet;
-						var centerY = y + offSet;
-
-						// Draw pointStyle as legend symbol
-						Chart.canvasHelpers.drawPoint(ctx, legendItem.pointStyle, radius, centerX, centerY);
-					}
-					else {
-						// Draw box as legend symbol
-						ctx.strokeRect(x, y, boxWidth, fontSize);
-						ctx.fillRect(x, y, boxWidth, fontSize);
-					}
+					// Draw the box
+					ctx.strokeRect(x, y, boxWidth, fontSize);
+					ctx.fillRect(x, y, boxWidth, fontSize);
 
 					ctx.restore();
 				};
@@ -373,7 +348,7 @@ module.exports = function(Chart) {
 				} else {
 					cursor = {
 						x: me.left + labelOpts.padding,
-						y: me.top + labelOpts.padding,
+						y: me.top,
 						line: 0
 					};
 				}
@@ -381,15 +356,13 @@ module.exports = function(Chart) {
 				var itemHeight = fontSize + labelOpts.padding;
 				helpers.each(me.legendItems, function(legendItem, i) {
 					var textWidth = ctx.measureText(legendItem.text).width,
-						width = labelOpts.usePointStyle ?
-							fontSize + (fontSize / 2) + textWidth :
-							boxWidth + (fontSize / 2) + textWidth,
+						width = boxWidth + (fontSize / 2) + textWidth,
 						x = cursor.x,
 						y = cursor.y;
 
 					if (isHorizontal) {
 						if (x + width >= legendWidth) {
-							y = cursor.y += itemHeight;
+							y = cursor.y += fontSize + (labelOpts.padding);
 							cursor.line++;
 							x = cursor.x = me.left + ((legendWidth - lineWidths[cursor.line]) / 2);
 						}
@@ -400,6 +373,7 @@ module.exports = function(Chart) {
 							cursor.line++;
 						}
 					}
+					
 
 					drawLegendBox(x, y, legendItem);
 
@@ -414,7 +388,7 @@ module.exports = function(Chart) {
 					} else {
 						cursor.y += itemHeight;
 					}
-
+					
 				});
 			}
 		},

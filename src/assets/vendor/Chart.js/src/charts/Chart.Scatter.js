@@ -22,11 +22,11 @@ module.exports = function(Chart) {
 
 		tooltips: {
 			callbacks: {
-				title: function() {
+				title: function(tooltipItems, data) {
 					// Title doesn't make sense for scatter since we format the data as a point
 					return '';
 				},
-				label: function(tooltipItem) {
+				label: function(tooltipItem, data) {
 					return '(' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
 				}
 			}
