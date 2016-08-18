@@ -38,8 +38,6 @@ class SliderComponent extends DOMElement {
     create() {
         super.create();
 
-        this._endAnimationEvent = AnimationFactory.getEndAnimationEvent();
-
         const seconds = 1000 * 2;
         this._timer = new Timer(seconds, 0);
     }
@@ -133,11 +131,11 @@ class SliderComponent extends DOMElement {
 
         this._$currPage
             .addClass(animationData.outClass)
-            .addEventListener(this._endAnimationEvent, this._onCurrentPageAnimationEnd, this);
+            .addEventListener('animationend', this._onCurrentPageAnimationEnd, this);
 
         this._$nextPage
             .addClass( animationData.inClass )
-            .addEventListener(this._endAnimationEvent, this._onNextPageAnimationEnd, this);
+            .addEventListener('animationend', this._onNextPageAnimationEnd, this);
     }
 
     /**
@@ -163,7 +161,7 @@ class SliderComponent extends DOMElement {
      * @protected
      */
     _onCurrentPageAnimationEnd(event) {
-        this._$currPage.removeEventListener(this._endAnimationEvent, this._onCurrentPageAnimationEnd, this);
+        this._$currPage.removeEventListener('animationend', this._onCurrentPageAnimationEnd, this);
 
         this._endCurrPage = true;
 
@@ -177,7 +175,7 @@ class SliderComponent extends DOMElement {
      * @protected
      */
     _onNextPageAnimationEnd(event) {
-        this._$nextPage.removeEventListener(this._endAnimationEvent, this._onNextPageAnimationEnd, this);
+        this._$nextPage.removeEventListener('animationend', this._onNextPageAnimationEnd, this);
 
         this._endNextPage = true;
 
