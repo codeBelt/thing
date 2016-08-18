@@ -42,10 +42,10 @@ class IndexView extends DOMElement {
         this.addChild(this._sliderComponent);
 
         // Update date and time displayed
-        this._$date = this.$element.find('.js-IndexView-date');
-        this._$time = this.$element.find('.js-IndexView-time');
-
-        setInterval(() => this._onDateTimeUpdate(), 1000);
+        // this._$date = this.$element.find('.js-IndexView-date');
+        // this._$time = this.$element.find('.js-IndexView-time');
+        //
+        // setInterval(() => this._onDateTimeUpdate(), 1000);
 
         this._fetchData();
     }
@@ -55,24 +55,15 @@ class IndexView extends DOMElement {
     //--------------------------------------------------------------------------------
 
     /**
-     * @method _onDateTimeUpdate
-     * @protected
-     */
-    _onDateTimeUpdate() {
-        this._$date.text(moment().format('MMM D'));
-        this._$time.text(moment().format('h:mma'));
-    }
-
-    /**
      * TODO: YUIDoc_comment
      *
      * @method _fetchData
      * @protected
      */
     async _fetchData() {
-        const apiService = new BaseApiService();
-        const imageList = await apiService.getRequest('/api/images');
-
+        // const apiService = new BaseApiService();
+        // const imageList = await apiService.getRequest('/api/images');
+        //
         // imageList.forEach(imagePath => {
         //    const imageView = new ImageView(imagePath);
         //     this._sliderComponent.addChild(imageView);

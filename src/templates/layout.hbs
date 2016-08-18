@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en-us">
+<html lang="en">
 <head>
     <meta name="google-site-verification" content="FHaD_353XEkwprHhHzXsvJ6B7vJVOJgcqVkpQFBJeAM" />
     <!-- META DATA -->
@@ -8,7 +8,7 @@
     <!--[if IE]><meta http-equiv="cleartype" content="on" /><![endif]-->
 
     <!-- SEO -->
-    <title>Nerdery Bloomington Beer</title>
+    <title>Nerdery Thing</title>
 
     <!-- STYLESHEETS -->
     {{#block "styles"}}
@@ -23,7 +23,6 @@
     <!-- POLYFILLS -->
     {{#block "scriptsHead"}}
         <!-- build:js assets/scripts/head.js -->
-        <script src="assets/vendor/modernizr/modernizr.js"></script>
         <!-- endbuild -->
     {{/block}}
 </head>
@@ -49,6 +48,7 @@
          * @static
          */
         window.SETTINGS = {};
+
         /**
          * Indicates whether we are running on a production environment
          *
@@ -57,6 +57,7 @@
          * @final
          */
         SETTINGS.IS_PRODUCTION = false;
+
         /**
          * Indicates whether to use the mock or backend API.
          *
@@ -65,6 +66,7 @@
          * @final
          */
         SETTINGS.USE_MOCK_API = true;
+
         /**
          * Appended to query string for versioning of network resources (CSS,
          * JavaScript, etc). This version number should be updated in production
@@ -75,6 +77,7 @@
          * @final
          */
         SETTINGS.APP_VERSION = '@@version';
+
         /**
          * Appended to query string to defeat caching of network resources (CSS,
          * JavaScript, etc). Should be set to '' on production
@@ -84,6 +87,7 @@
          * @final
          */
         SETTINGS.CACHE_BUSTER = SETTINGS.IS_PRODUCTION ? '' : '&bust=' + Math.random();
+
         /**
          * Root path for all JavaScript files
          *
@@ -92,6 +96,7 @@
          * @final
          */
         SETTINGS.SCRIPT_PATH = 'assets/scripts/';
+
         /**
          * The start and end times for the beer screen being static.
          *
@@ -113,9 +118,7 @@
     {{#block "scriptsBody"}}
         <!-- build:js assets/scripts/vendor.js -->
         <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-        <script src="assets/vendor/form2js/src/form2js.js"></script>
         <script src="assets/vendor/handlebars/handlebars.runtime.min.js"></script>
-        <script src="assets/vendor/moment/moment.js"></script>
         <script src="assets/vendor/fetch/fetch.js"></script>
         <script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
         <!-- endbuild -->
